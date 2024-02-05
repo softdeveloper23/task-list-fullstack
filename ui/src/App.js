@@ -1,9 +1,18 @@
-function App() {
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { AddTaskForm } from "./components/AddTaskForm";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+export default function App() {
   return (
-    <div className="App">
-      <h1>React App</h1>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <AddTaskForm />
+    </ThemeProvider>
   );
 }
-
-export default App;
