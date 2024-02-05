@@ -1,5 +1,7 @@
 import { Button, Checkbox, Typography } from '@mui/material';
 import React, { useState } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 export const Task = ({ task }) => {
     const { id, name, completed } = task;
@@ -18,8 +20,12 @@ export const Task = ({ task }) => {
     <div>
         <Checkbox checked={isCompleted} onChange={handleUpdateTaskCompletion} />
         <Typography variant='h4'>{name}</Typography>
-        <Button variant='contained' onClick={() => setIsDialogOpen(true)}></Button>
-        <Button variant='contained' onClick={handleDeleteTask}></Button>
+        <Button variant='contained' onClick={() => setIsDialogOpen(true)}>
+            <EditIcon />
+        </Button>
+        <Button color='error' variant='contained' onClick={handleDeleteTask}>
+            <DeleteIcon />
+        </Button>
     </div>
     )
 }
