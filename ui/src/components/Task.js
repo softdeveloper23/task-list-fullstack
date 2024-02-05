@@ -4,19 +4,36 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { UpdateTaskForm } from './UpdateTaskForm';
 import classnames from 'classnames';
+import axios from 'axios';
+import { API_URL } from '../utils';
 
-export const Task = ({ task }) => {
+export const Task = ({ task, fetchTasks }) => {
     const { id, name, completed } = task;
     const [isCompleted, setIsCompleted] = useState(completed);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const handleUpdateTaskCompletion = () => {
-        setIsCompleted((prev) => !prev);
-    }
+    const handleUpdateTaskCompletion = async () => {
+        try {
+            await axios.put(API_URL, {
+                id,
+                name,
+                completed: !isCompleted,
+            });
+            setIsCompleted((prev) => !prev);  
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-    const handleDeleteTask = () => {
-        console.log('Deleting task:', id);
-    }
+    const handleDeleteTask = async () => {
+        try {
+            await axios.delete(`${API_URL}/${id}`);
+
+            await fetchTasks();
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
     <div className='task'>
@@ -36,6 +53,7 @@ export const Task = ({ task }) => {
         </div>
         
         <UpdateTaskForm 
+            fetchTasks={fetchTasks}
             isDialogOpen={isDialogOpen} 
             setIsDialogOpen={setIsDialogOpen} 
             task={task} 
