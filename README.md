@@ -5,9 +5,6 @@
 
 This application was created specifically to practice deploying a real-world application to AWS. The app has a persistent database that any user can interact with. This means that the task list is not instanced to each particular user. If you want to see a ToDo List I created that is instanced to each user and is stored in local storage, visit https://softdeveloper23.github.io/to-do-list-app/ to test that app live.
 
-<a href="https://example.com" target="_blank" rel="noopener noreferrer">Open this link in a new tab</a>
-
-
 ## Technologies Used
 
 DynamoDB | Lambda | Amplify | Express | React | Node
